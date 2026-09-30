@@ -1,1 +1,225 @@
-index.html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymControl - Sistema de Gestión de Gimnasio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: white;
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .links-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .link-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+        }
+
+        .link-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .link-card a:hover {
+            text-decoration: underline;
+        }
+
+        .link-card p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 0.9em;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-right: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏋️ GymControl</h1>
+        <p>Sistema de Gestión de Gimnasio</p>
+    </header>
+
+    <div class="container">
+        <!-- Descripción -->
+        <section>
+            <h2>📋 Descripción</h2>
+            <p>
+                GymControl es un sistema integral de gestión para gimnasios y centros de entrenamiento. 
+                Diseñado para optimizar la administración de miembros, clases, equipos y pagos en una 
+                plataforma centralizada y fácil de usar.
+            </p>
+        </section>
+
+        <!-- Características -->
+        <section>
+            <h2>✨ Características</h2>
+            <ul>
+                <li>Gestión de miembros y afiliaciones</li>
+                <li>Control de asistencia y reservas de clases</li>
+                <li>Manejo de pagos y facturación</li>
+                <li>Reportes y estadísticas</li>
+                <li>Administración de equipos e instalaciones</li>
+                <li>Sistema de notificaciones</li>
+            </ul>
+        </section>
+
+        <!-- Tecnología -->
+        <section>
+            <h2>🛠️ Tecnología</h2>
+            <div style="margin-bottom: 15px;">
+                <span class="badge">C#</span>
+                <span class="badge">.NET</span>
+                <span class="badge">SQL Server</span>
+                <span class="badge">WinForms</span>
+            </div>
+            <p>Desarrollado con C# y .NET para máxima compatibilidad y rendimiento.</p>
+        </section>
+
+        <!-- Trabajo Relacionado -->
+        <section>
+            <h2>📁 Mis Trabajos</h2>
+            <div class="links-section">
+                <div class="link-card">
+                    <a href="#">Repositorio Principal</a>
+                    <p>Código fuente del proyecto GymControl</p>
+                </div>
+
+                <div class="link-card">
+                    <a href="#">Documentación</a>
+                    <p>Guía de instalación y configuración</p>
+                </div>
+
+                <div class="link-card">
+                    <a href="#">Demo / Capturas</a>
+                    <p>Vistas previas de la interfaz</p>
+                </div>
+
+                <div class="link-card">
+                    <a href="#">Issues y Roadmap</a>
+                    <p>Características en desarrollo</p>
+                </div>
+
+                <div class="link-card">
+                    <a href="#">Mi Portafolio</a>
+                    <p>Otros proyectos y trabajos</p>
+                </div>
+
+                <div class="link-card">
+                    <a href="#">Contacto</a>
+                    <p>LinkedIn, Email, GitHub</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Instalación (opcional) -->
+        <section>
+            <h2>🚀 Inicio Rápido</h2>
+            <ol>
+                <li>Clonar el repositorio</li>
+                <li>Instalar dependencias</li>
+                <li>Configurar la base de datos</li>
+                <li>Ejecutar la aplicación</li>
+            </ol>
+            <p style="margin-top: 15px; color: #666; font-style: italic;">
+                Ver documentación completa para instrucciones detalladas.
+            </p>
+        </section>
+
+        <!-- Licencia -->
+        <section>
+            <h2>📄 Licencia</h2>
+            <p>Este proyecto está bajo licencia MIT. Ver archivo LICENSE para más detalles.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 GymControl. Desarrollado por Willian</p>
+    </footer>
+</body>
+</html>
