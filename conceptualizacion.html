@@ -1,1 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptualización - GymControl</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .intro-text {
+            background: #f0f4ff;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            font-style: italic;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table tr:hover {
+            background: #f9f9f9;
+        }
+
+        table tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+
+        .section-title {
+            background: #f0f4ff;
+            padding: 10px 15px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0 15px 0;
+            border-radius: 5px;
+        }
+
+        strong {
+            color: #764ba2;
+        }
+
+        .objetivo {
+            background: #fff3e0;
+            padding: 15px;
+            border-left: 4px solid #ff9800;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .objetivo strong {
+            color: #ff9800;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            background: #f9f9f9;
+            padding: 20px 40px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+            font-size: 0.9em;
+        }
+
+        .box-info {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .riesgo-row {
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            table th, table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏋️ GymControl</h1>
+            <p>Sistema de Gestión para Gimnasio</p>
+        </header>
+
+        <div class="content">
+            <!-- INTRODUCCIÓN -->
+            <div class="intro-text">
+                En la actualidad, el "Gimnasio FitZone" administrado por el señor Carlos gestiona todos sus procesos operativos, como el registro de membresías, control de pagos, horarios de clases y asistencia, de manera íntegramente manual mediante el uso de cuadernos y planillas físicas. Esta metodología de trabajo genera una problemática concreta: la incapacidad de mantener un control preciso en tiempo real de los miembros activos. Como consecuencias observables de esta situación, el negocio experimenta una notable lentitud en el registro de nuevos miembros, errores recurrentes en el cobro de cuotas mensuales, dificultad para gestionar horarios de clases y pérdidas económicas ocasionadas por pagos no registrados o cobros duplicados.
+            </div>
+
+            <!-- 1. PRESENTACIÓN DEL PROYECTO -->
+            <h2>1. Presentación del Proyecto</h2>
+            
+            <p><strong>Nombre del sistema:</strong> GymControl</p>
+
+            <h3>Integrantes del grupo:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sofía García López</strong></td>
+                        <td>Desarrollador Back-End: Crea la lógica del negocio, gestiona el servidor, diseña la base de datos y crea las APIs para la gestión de membresías y pagos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Carlos Rodríguez Martínez</strong></td>
+                        <td>Desarrollador Front-End (UI/UX): Se encarga de la interfaz gráfica, diseña pantallas intuitivas para registro de miembros, horarios y reportes, asegurando que sea responsivo y fácil de usar.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>María Fernández Díaz</strong></td>
+                        <td>Líder de proyecto, DevOps: Coordina el trabajo usando metodologías ágiles, organiza el repositorio en GitHub, resuelve bloqueos del equipo y configura el servidor.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Juan López Pérez</strong></td>
+                        <td>Tester (QA) / Documentador: Realiza pruebas manuales y automatizadas para encontrar bugs, valida funcionalidades y redacta la documentación técnica del sistema.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="box-info">
+                <strong>Usuario / Cliente Real:</strong> Señor Carlos, propietario del Gimnasio FitZone.
+            </div>
+
+            <!-- 2. DEFINICIÓN DEL PROBLEMA -->
+            <h2>2. Definición del Problema</h2>
+            
+            <h3>Situación Actual</h3>
+            <p>Actualmente, el señor Carlos registra las membresías, cobros mensuales y horarios de clases utilizando cuadernos y planillas manuales.</p>
+
+            <h3>Problemática Concreta</h3>
+            <p>El registro manual provoca lentitud en la inscripción de nuevos miembros, errores en el seguimiento de pagos de cuotas, dificultad para gestionar horarios de clases y entrenamientos personalizados, y pérdidas económicas por pagos no cobrados o duplicados. Además, es imposible acceder rápidamente al historial de asistencia de los miembros.</p>
+
+            <!-- 3. PROPÓSITO Y OBJETIVOS -->
+            <h2>3. Propósito y Objetivos</h2>
+
+            <div class="objetivo">
+                <strong>Objetivo General:</strong> Desarrollar un sistema informático que permita gestionar membresías, pagos, horarios de clases y asistencia del gimnasio FitZone de forma rápida, centralizada y automatizada.
+            </div>
+
+            <h3>Objetivos Específicos</h3>
+            <ol>
+                <li>Registrar nuevas membresías con información de miembros (nombre, contacto, plan de pago).</li>
+                <li>Gestionar automáticamente el cobro y seguimiento de cuotas mensuales.</li>
+                <li>Administrar horarios de clases y entrenamientos personalizados.</li>
+                <li>Registrar asistencia de miembros al gimnasio.</li>
+                <li>Generar reportes de ingresos mensuales y membresías activas.</li>
+            </ol>
+
+            <!-- 4. ALCANCE DEL PROYECTO -->
+            <h2>4. Alcance del Proyecto</h2>
+
+            <div class="section-title">
+                <strong>✅ Incluye (dentro del alcance):</strong>
+            </div>
+            <ul>
+                <li>Módulo de gestión de membresías (altas, bajas y modificaciones).</li>
+                <li>Módulo de control de pagos y cuotas mensuales.</li>
+                <li>Módulo de horarios de clases y entrenamientos.</li>
+                <li>Control de asistencia mediante registro manual o código QR.</li>
+                <li>Alertas de pagos pendientes o cuotas atrasadas.</li>
+                <li>Reportes de ingresos y membresías activas.</li>
+            </ul>
+
+            <div class="section-title">
+                <strong>❌ No incluye (fuera de alcance):</strong>
+            </div>
+            <ul>
+                <li>Pago en línea integrado directamente en el software (se usará pasarela externa).</li>
+                <li>Aplicación móvil para miembros (solo versión web para administrador).</li>
+                <li>Integración con máquinas de gimnasio inteligentes.</li>
+                <li>Facturación electrónica legal con autoridades fiscales.</li>
+            </ul>
+
+            <!-- 5. INTERESADOS -->
+            <h2>5. Interesados (Stakeholders)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Interesado</th>
+                        <th>Descripción</th>
+                        <th>Interés en el Proyecto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>El señor Carlos</strong></td>
+                        <td>Propietario del Gimnasio FitZone.</td>
+                        <td>Busca automatizar la gestión de membresías, reducir pérdidas por pagos no cobrados, conocer ingresos diarios y tener control total del inventario de miembros.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Personal administrativo</strong></td>
+                        <td>Recepcionistas y personal encargado del registro de miembros.</td>
+                        <td>Esperan una interfaz rápida, intuitiva y fácil de usar para registrar nuevas membresías y consultar información de miembros sin hacer esperar.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Entrenadores personales</strong></td>
+                        <td>Instructores de clases y entrenamientos.</td>
+                        <td>Necesitan acceder a horarios de clases y visualizar a los miembros asignados a sus entrenamientos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Administrador del proyecto</strong></td>
+                        <td>Equipo de desarrollo o persona de soporte técnico.</td>
+                        <td>Esperan un sistema estable, con código limpio y fácil de mantener, además de gestionar copias de seguridad.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 6. JUSTIFICACIÓN / VIABILIDAD -->
+            <h2>6. Justificación / Viabilidad</h2>
+
+            <h3>Viabilidad Técnica</h3>
+            <p>El equipo cuenta con los conocimientos necesarios en lenguajes de programación web para desarrollarlo.</p>
+
+            <h3>Viabilidad Operativa</h3>
+            <p>La interfaz se diseñará con botones grandes y flujos sencillos, asegurando que el personal del gimnasio pueda utilizarlo sin conocimientos técnicos avanzados.</p>
+
+            <h3>Viabilidad Económica</h3>
+            <p>Al utilizar herramientas de código abierto y un servidor local o en la nube económico, los costos de desarrollo e implementación serán mínimos para el gimnasio.</p>
+
+            <!-- 7. VISIÓN GENERAL -->
+            <h2>7. Visión General de la Solución</h2>
+            <p>El sistema será una aplicación web que permitirá registrar nuevos miembros de forma rápida, asignarles un plan de pago mensual y registrar automáticamente sus cuotas. Al llegar al gimnasio, los miembros marcarán su asistencia. El sistema generará alertas de pagos pendientes y reportes mensuales de ingresos para que el señor Carlos pueda monitorear el estado financiero del negocio.</p>
+
+            <!-- 8. GLOSARIO -->
+            <h2>8. Glosario de Términos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Término</th>
+                        <th>Definición</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Membresía</strong></td>
+                        <td>Suscripción mensual o anual de un cliente al gimnasio.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cuota mensual</strong></td>
+                        <td>Monto de pago que debe realizar el miembro cada mes para mantener su membresía activa.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Entrenamiento personalizado</strong></td>
+                        <td>Sesión de entrenamiento diseñada específicamente para un miembro por un entrenador.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Plan de pago</strong></td>
+                        <td>Modalidad de suscripción (mensual, trimestral, anual) con su respectivo precio.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Asistencia</strong></td>
+                        <td>Registro de la fecha y hora en que un miembro ingresa al gimnasio.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 9. RIESGOS -->
+            <h2>9. Riesgos Iniciales</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Riesgo</th>
+                        <th>Impacto</th>
+                        <th>Estrategia de Mitigación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Baja disponibilidad del cliente</strong><br><em>Tiempo limitado del señor Carlos debido a la operación continua del gimnasio.</em></td>
+                        <td><span style="background: #ffebee; padding: 5px 10px; border-radius: 3px; font-weight: bold; color: #c62828;">Alto</span></td>
+                        <td>Coordinar reuniones breves de máximo 20 minutos en horarios con poco movimiento, enviar prototipos visuales y usar comunicación asincrónica por mensajes.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Resistencia al cambio</strong><br><em>Posible dificultad del personal para adaptarse de registros manuales a software.</em></td>
+                        <td><span style="background: #ffebee; padding: 5px 10px; border-radius: 3px; font-weight: bold; color: #c62828;">Alto</span></td>
+                        <td>Diseñar una interfaz extremadamente simple, realizar capacitaciones prácticas presenciales y entregar un manual de usuario visual paso a paso.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Datos incompletos</strong><br><em>Registros manuales previos inconsistentes (nombres duplicados, precios desactualizados).</em></td>
+                        <td><span style="background: #fff3e0; padding: 5px 10px; border-radius: 3px; font-weight: bold; color: #e65100;">Medio</span></td>
+                        <td>Entregar una plantilla estándar para la carga inicial de datos y dedicar una sesión previa para organizar y unificar la información.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Retraso en cronograma</strong><br><em>Intentar abarcar demasiadas funciones avanzadas.</em></td>
+                        <td><span style="background: #fff3e0; padding: 5px 10px; border-radius: 3px; font-weight: bold; color: #e65100;">Medio</span></td>
+                        <td>Priorizar estrictamente el Módulo de Membresías y Pagos (MVP) en las primeras fases y mover funciones secundarias a etapas posteriores.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 10. SELECCIÓN TECNOLÓGICA -->
+            <h2>10. Selección Tecnológica Preliminar</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Componente</th>
+                        <th>Elección</th>
+                        <th>Justificación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Lenguaje de programación</strong></td>
+                        <td>JavaScript</td>
+                        <td>Permite usar un mismo lenguaje tanto en el cliente como en el servidor, agilizando el desarrollo y contando con una amplia variedad de librerías para la gestión de datos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Framework</strong></td>
+                        <td>React (Front-end) + Node.js con Express (Back-end)</td>
+                        <td>Permite construir una interfaz rápida, dinámica e intuitiva para el registro de miembros, junto con un servidor liviano y eficiente para procesar las consultas del inventario.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Base de datos</strong></td>
+                        <td>PostgreSQL (o MySQL)</td>
+                        <td>Es un motor relacional gratuito y robusto que garantiza la integridad y consistencia de los datos (membresías, pagos y asistencia) mediante transacciones seguras.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="footer">
+            <p>📄 Documento de Conceptualización - Ingeniería de Software I | UniNorte</p>
+            <p>Sistema de Gestión para Gimnasio - GymControl</p>
+        </div>
+    </div>
+</body>
+</html>
