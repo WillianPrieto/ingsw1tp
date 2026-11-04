@@ -1,44 +1,416 @@
-# CGrande - Sistema Móvil de Gestión de Pedidos
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGrande - Sistema Móvil de Gestión de Pedidos | Presentación TP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-**Trabajo Práctico Integrador — Ingeniería de Software I · UniNorte 2026**
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.65;
+            color: #2d3748;
+            background-color: #f8fafc;
+        }
 
-CGrande es un sistema móvil corporativo de gestión comercial y control de pedidos en terreno, concebido para modernizar de extremo a extremo las operaciones de venta y preventa de la distribuidora **CGrande**.
+        /* HEADER */
+        .page-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #0284c7 100%);
+            color: white;
+            padding: 65px 20px 55px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.2);
+        }
 
-Históricamente, los preventistas y comerciales de la firma realizaban visitas a almacenes, minisupers y comercios minoristas utilizando talonarios en papel o mensajes desorganizados en WhatsApp. Esta dinámica manual provocaba desfases con el stock físico de depósito, demoras en el despacho de mercaderías, errores de cálculo en subtotales o precios por lista, y una notable dificultad para controlar las ventas a crédito de clientes morosos.
+        .header-pill {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(4px);
+            padding: 5px 16px;
+            border-radius: 20px;
+            font-size: 0.82em;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
 
-La aplicación móvil **CGrande** resuelve esta problemática dotando a la fuerza de ventas de una herramienta moderna en sus teléfonos inteligentes Android: permite consultar existencias e información técnica de productos en tiempo real, geolocalizar comercios clientes mediante GPS, armar cotizaciones y pedidos (tanto al contado como a crédito) y sincronizarlos de forma inmediata contra el servidor central vía API REST. De este modo, el depósito recibe los pedidos al instante para su preparación y facturación formal, eliminando tiempos muertos y errores de transcripción.
+        .page-header h1 {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
 
----
+        .project-tagline {
+            font-size: 1.15em;
+            opacity: 0.95;
+            max-width: 780px;
+            margin: 0 auto 24px;
+            font-weight: 400;
+        }
 
-## 👥 Grupo 7
+        .btn-github {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #1e3a8a;
+            padding: 10px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
 
-- **Willian Mijael Prieto Duarte** — Líder del Proyecto, Administrador de Base de Datos y Desarrollador Backend
-- **Eliam Leonel Cabrera Paez** — Desarrollador Frontend Mobile y Diseño de Interfaz (UX/UI)
-- **Lucas Esteban Pereira Benitez** — Desarrollador de Lógica Móvil e Integración con API REST
-- **Alejandro Ezequiel Flores Perez** — Control de Calidad (QA), Pruebas de Software y Documentación
+        .btn-github:hover {
+            background: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
 
-**Usuario / cliente real:** Propietario y personal comercial de la distribuidora *"CGrande"*.
+        /* CONTAINER */
+        .main-content {
+            max-width: 940px;
+            margin: 35px auto 50px;
+            padding: 0 20px;
+        }
 
-**Metodología utilizada:** Scrum adaptado al marco académico universitario (ciclos iterativos con modelado y artefactos UML).
+        .card {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 35px;
+            margin-bottom: 25px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2e8f0;
+        }
 
----
+        h2 {
+            color: #1e3a8a;
+            font-size: 1.55em;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-## 🧭 Navegación de Entregas
+        p {
+            margin-bottom: 16px;
+            text-align: justify;
+            color: #334155;
+            font-size: 1.02em;
+        }
 
-| Entrega | Descripción | Enlace |
-|---|---|---|
-| 📋 Entrega 1 | Conceptualización — el problema, el propósito y el alcance del proyecto | [Ir a Conceptualización](conceptualizacion.md) |
-| 🔍 Entrega 2 | Análisis — requisitos, casos de uso y modelo de dominio | [Ir a Análisis](analisis.md) |
-| 🛠️ Entrega 3 | Diseño — arquitectura, clases de diseño y base de datos | *Próximamente* |
+        /* INTEGRANTES */
+        .team-list {
+            list-style: none;
+            margin-left: 0;
+            margin-bottom: 18px;
+        }
 
----
+        .team-list li {
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            background: #f8fafc;
+            border-left: 4px solid #2563eb;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.98em;
+        }
 
-## 💻 Repositorio de Código
+        .team-list strong {
+            color: #1e3a8a;
+        }
 
-El código fuente de la aplicación Android nativa (Kotlin, Jetpack Compose, Retrofit 2) y el backend REST se encuentra disponible en:
+        .meta-info {
+            background: #f1f5f9;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
 
-👉 **[https://github.com/WillianPrieto/ingsw1tp](https://github.com/WillianPrieto/ingsw1tp)**
+        .meta-info p {
+            margin-bottom: 8px;
+            font-size: 0.96em;
+        }
 
+        .meta-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* TABLA DE NAVEGACION */
+        table.nav-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 10px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        table.nav-table th {
+            background: #f8fafc;
+            color: #475569;
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        table.nav-table td {
+            padding: 16px 18px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+            font-size: 0.98em;
+        }
+
+        table.nav-table tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        table.nav-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .col-entrega {
+            font-weight: 700;
+            color: #1e3a8a;
+            white-space: nowrap;
+            width: 18%;
+        }
+
+        .col-desc {
+            color: #475569;
+            width: 62%;
+        }
+
+        .col-enlace {
+            width: 20%;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .link-entrega {
+            color: #2563eb;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.15s ease;
+        }
+
+        .link-entrega:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        .badge-status {
+            display: inline-block;
+            font-size: 0.78em;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* REPOSITORIO Y STACK */
+        .repo-box {
+            background: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 18px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+        }
+
+        .badges-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tech-pill {
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1px solid #bfdbfe;
+            padding: 5px 12px;
+            border-radius: 16px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        /* FOOTER */
+        footer.site-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+            margin-top: 50px;
+        }
+
+        footer.site-footer p {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.85em;
+            }
+
+            .card {
+                padding: 22px 18px;
+            }
+
+            table.nav-table th, table.nav-table td {
+                padding: 12px 10px;
+                font-size: 0.88em;
+            }
+
+            .col-enlace {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="page-header" role="banner">
+        <span class="header-pill">Trabajo Práctico Integrador · Grupo 7</span>
+        <h1>CGrande - Sistema Móvil de Gestión de Pedidos</h1>
+        <p class="project-tagline">
+            Análisis, diseño e implementación de una solución nativa Android para la automatización de preventa, catálogo y facturación de la distribuidora CGrande.
+        </p>
+        <a href="https://github.com/WillianPrieto/ingsw1tp" class="btn-github" target="_blank" rel="noopener noreferrer">
+            <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            Ver en GitHub
+        </a>
+    </header>
+
+    <main class="main-content" role="main">
+
+        <!-- PRESENTACIÓN DEL PROYECTO -->
+        <section class="card">
+            <h2>📦 Presentación del Proyecto</h2>
+            <p>
+                <strong>CGrande</strong> es un sistema móvil corporativo de gestión comercial y control de pedidos en terreno, concebido para modernizar de extremo a extremo las operaciones de venta de la distribuidora <em>CGrande</em>. 
+            </p>
+            <p>
+                Históricamente, los preventistas y comerciales de la firma realizaban visitas a almacenes, minisupers y clientes minoristas utilizando talonarios en papel o chats desorganizados de mensajería para anotar pedidos. Esta dinámica tradicional provocaba desfases frecuentes con el stock físico de depósito, demoras en el despacho de mercaderías, errores de cálculo en subtotales o precios por lista, y una notable dificultad para controlar las ventas a crédito de clientes morosos.
+            </p>
+            <p>
+                La aplicación móvil <strong>CGrande</strong> resuelve esta problemática dotando a la fuerza de ventas de una herramienta moderna en sus teléfonos inteligentes: permite consultar existencias e información técnica de productos en tiempo real, geolocalizar comercios clientes mediante GPS, armar cotizaciones y pedidos (tanto al contado como a crédito) y sincronizarlos de forma inmediata contra el servidor central vía API REST. De este modo, el depósito recibe los pedidos de inmediato para su preparación y facturación formal, eliminando tiempos muertos y errores de transcripción.
+            </p>
+            <div class="badges-tech">
+                <span class="tech-pill">Android Nativo</span>
+                <span class="tech-pill">Kotlin</span>
+                <span class="tech-pill">Jetpack Compose</span>
+                <span class="tech-pill">Retrofit 2 & OkHttp</span>
+                <span class="tech-pill">API RESTful</span>
+                <span class="tech-pill">Geolocalización GPS</span>
+            </div>
+        </section>
+
+        <!-- GRUPO Y CLIENTE -->
+        <section class="card">
+            <h2>👥 Integrantes del Grupo 7</h2>
+            <ul class="team-list">
+                <li><strong>Willian Mijael Prieto Duarte</strong> — Líder del Proyecto, Administrador de Base de Datos y Desarrollador Backend</li>
+                <li><strong>Eliam Leonel Cabrera Paez</strong> — Desarrollador Frontend Mobile y Diseño de Interfaz (UX/UI)</li>
+                <li><strong>Lucas Esteban Pereira Benitez</strong> — Desarrollador de Lógica Móvil e Integración con API REST</li>
+                <li><strong>Alejandro Ezequiel Flores Perez</strong> — Control de Calidad (QA), Pruebas de Software y Documentación</li>
+            </ul>
+
+            <div class="meta-info">
+                <p><strong>Usuario / Cliente Real:</strong> Propietario y personal comercial de la distribuidora <em>"CGrande"</em>.</p>
+                <p><strong>Metodología Utilizada:</strong> <em>Scrum</em> adaptado al marco académico universitario (ciclos iterativos con modelado y artefactos UML).</p>
+            </div>
+        </section>
+
+        <!-- NAVEGACIÓN DE ENTREGAS -->
+        <section class="card">
+            <h2>🧭 Navegación de Entregas</h2>
+            <p>
+                A continuación se presentan las instancias del Trabajo Práctico Integrador para su consulta y evaluación por parte de la cátedra:
+            </p>
+            
+            <table class="nav-table">
+                <thead>
+                    <tr>
+                        <th>Entrega</th>
+                        <th>Descripción</th>
+                        <th style="text-align: right;">Enlace</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-entrega">📋 Entrega 1</td>
+                        <td class="col-desc">Conceptualización — el problema, el propósito y el alcance del proyecto</td>
+                        <td class="col-enlace">
+                            <a href="conceptualizacion.md" class="link-entrega">Ir a Conceptualización →</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-entrega">🔍 Entrega 2</td>
+                        <td class="col-desc">Análisis — requisitos, casos de uso y modelo de dominio</td>
+                        <td class="col-enlace">
+                            <a href="analisis.md" class="link-entrega">Ir a Análisis →</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-entrega">🛠️ Entrega 3</td>
+                        <td class="col-desc">Diseño — arquitectura, clases de diseño y base de datos</td>
+                        <td class="col-enlace">
+                            <span class="badge-status">Próximamente</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- REPOSITORIO DE CÓDIGO -->
+        <section class="card">
+            <h2>💻 Repositorio e Implementación</h2>
+            <div class="repo-box">
+                <p style="margin-bottom: 6px;">
+                    <strong>Código Fuente del Proyecto:</strong>
+                </p>
+                <p style="margin-bottom: 0;">
+                    El repositorio contiene la documentación oficial para GitHub Pages y la implementación de la aplicación móvil en Android Studio con Jetpack Compose y consumo de API REST. Disponible en: 
+                    <a href="https://github.com/WillianPrieto/ingsw1tp" target="_blank" rel="noopener noreferrer" style="color: #15803d; font-weight: 700;">
+                        github.com/WillianPrieto/ingsw1tp
+                    </a>
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p><strong>Ingeniería de Software I · Cátedra UniNorte 2026</strong></p>
+        <p>Sitio generado y mantenido por el Grupo 7 como entrega oficial del Trabajo Práctico Integrador.</p>
+        <p>© 2026 Willian Prieto, Eliam Cabrera, Lucas Pereira, Alejandro Flores.</p>
+    </footer>
+
+</body>
+</html>
 ---
 
 <sub>Sitio generado y mantenido por el Grupo 7 como entrega oficial del Trabajo Práctico Integrador. © 2026 UniNorte.</sub>
