@@ -1,144 +1,575 @@
-[← Volver a Presentación](Presentacion.md)
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptualización - CGrande · Gestión de Pedidos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-# Entrega 1 · Conceptualización
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
+            padding: 24px 16px;
+            min-height: 100vh;
+        }
 
-> *Punto de partida: entender el problema, delimitar el alcance y encuadrar el proyecto.*
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
 
----
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: #ffffff;
+            padding: 45px 30px;
+            text-align: center;
+        }
 
-## 1. Presentación del proyecto
+        header .tagline {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.18);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
 
-**Nombre del sistema:** CGrande — Aplicación Móvil de Gestión de Pedidos y Preventa Comercial
+        header h1 {
+            font-size: 2.3em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
 
-**Integrantes del grupo 7:**
+        header p {
+            font-size: 1.15em;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
 
-| Nombre | Rol Asignado | Responsabilidades Principales |
-|---|---|---|
-| **Willian Mijael Prieto Duarte** | Líder de Proyecto, Administrador de BD y Backend | Diseño de la base de datos relacional, desarrollo y securización de la API REST, autenticación de usuarios y despliegue del servidor central. |
-| **Eliam Leonel Cabrera Paez** | Desarrollador Frontend Mobile & UX/UI | Implementación de vistas interactivas con Jetpack Compose en Android, diseño de flujo de navegación, componentes visuales de pedidos, catálogos y cobros. |
-| **Lucas Esteban Pereira Benitez** | Desarrollador de Lógica Móvil & Integración API | Implementación de la capa de acceso a datos con Retrofit/OkHttp, gestión de estados reactivos con Coroutines/Flow, sincronización y geolocalización GPS. |
-| **Alejandro Ezequiel Flores Perez** | Control de Calidad (QA), Pruebas y Documentación | Diseño y ejecución de casos de prueba funcional, validación de sincronización offline/online, verificación de cálculos de facturación y especificaciones técnicas. |
+        .content {
+            padding: 40px 45px;
+        }
 
-**Usuario / cliente real:** Distribuidora Comercial *"CGrande"*, establecimiento comercial dedicado a la distribución y venta de productos de consumo masivo con atención a comercios minoristas y mostrador.
+        h2 {
+            color: #1e3a8a;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 10px;
+            margin-top: 36px;
+            margin-bottom: 20px;
+            font-size: 1.7em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
----
+        h3 {
+            color: #1d4ed8;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            font-size: 1.25em;
+        }
 
-## 2. Definición del problema
+        p {
+            margin-bottom: 16px;
+            text-align: justify;
+            line-height: 1.75;
+        }
 
-En el modelo operativo tradicional de la distribuidora **CGrande**, los preventistas y vendedores de terreno efectúan sus visitas a los comercios clientes empleando talonarios de papel o notas desestructuradas mediante mensajería instantánea (WhatsApp). Los pedidos registrados durante la jornada son comunicados al final de la tarde o transcriptos de manera manual por personal de depósito y administración.
+        .intro-text {
+            background: #eff6ff;
+            padding: 22px;
+            border-left: 5px solid #2563eb;
+            margin-bottom: 30px;
+            border-radius: 6px;
+            font-size: 1.02em;
+        }
 
-Este flujo de trabajo manual e intermediado genera serias deficiencias y cuellos de botella en la operación:
+        .box-info {
+            background: #f0fdf4;
+            padding: 18px 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 5px solid #16a34a;
+        }
 
-1. **Desfase de stock y pedidos incumplidos:** El vendedor en terreno no tiene visibilidad en tiempo real de las existencias reales en depósito. Esto resulta en la toma de pedidos de artículos ya agotados, provocando demoras, entregas parciales y disconformidad en los clientes.
-2. **Retrabajo y errores de transcripción:** La carga posterior de pedidos manuscritos en el sistema central suele acarrear confusiones de códigos de producto, cantidades erróneas y precios desactualizados, duplicando el tiempo operativo administrativo.
-3. **Falta de control crediticio y cuentas corrientes en calle:** Al no contar con información actualizada del estado de cuenta de cada comercio cliente, los preventistas emiten pedidos a clientes con facturas vencidas o que han excedido su límite de crédito autorizado.
-4. **Ausencia de georreferenciación y desorganización en rutas de reparto:** Dificultad para coordinar las entregas logísticas por no poseer las coordenadas exactas de los comercios clientes, incrementando costos de flete y tiempos de entrega.
+        .box-scope-in {
+            background: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
 
----
+        .box-scope-out {
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+            padding: 16px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
 
-## 3. Propósito y objetivos
+        .objetivo {
+            background: #fffbeb;
+            padding: 16px 20px;
+            border-left: 5px solid #f59e0b;
+            margin: 16px 0;
+            border-radius: 6px;
+        }
 
-**Propósito:** Desarrollar y desplegar una aplicación móvil nativa Android conectada a una API centralizada que transforme la labor de ventas y preventa en un proceso ágil, preciso e informatizado, garantizando la consistencia del inventario y la agilidad en la entrega de mercaderías.
+        .objetivo strong {
+            color: #b45309;
+        }
 
-**Objetivo general:**
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 22px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
 
-Desarrollar una aplicación móvil integrada a una API REST para la empresa comercial CGrande que sistematice la gestión integral de pedidos, el catálogo de productos con stock en tiempo real, el registro de clientes geolocalizados y el control de facturación en punto de venta.
+        table th {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: #ffffff;
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
 
-**Objetivos específicos:**
+        table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+            font-size: 0.95em;
+        }
 
-1. **Digitalizar la toma de pedidos y cotizaciones:** Proveer a la fuerza de ventas una interfaz móvil rápida e intuitiva que permita armar pedidos (contado y crédito), calculando subtotales, descuentos y totales de forma automática sin errores de cálculo.
-2. **Proveer visibilidad de catálogo e inventario en tiempo real:** Permitir la consulta instantánea de productos por código o descripción, mostrando listas de precios y existencias disponibles al momento de la venta.
-3. **Optimizar la gestión de clientes y cobranzas:** Facilitar la búsqueda ágil de clientes por RUC o Razón Social, visualización de ventas pendientes a crédito y captura de coordenadas GPS para mejorar las rutas de entrega.
-4. **Centralizar la sincronización de datos con el servidor central:** Comunicar de manera instantánea cada pedido generado con el depósito de la empresa mediante servicios web, reduciendo el tiempo de preparación y despacho de pedidos.
+        table tr:hover {
+            background: #f8fafc;
+        }
 
----
+        table tr:nth-child(even) {
+            background: #f1f5f9;
+        }
 
-## 4. Alcance del proyecto
+        ul, ol {
+            margin-left: 24px;
+            margin-bottom: 18px;
+        }
 
-El sistema concentra su capacidad funcional en los módulos críticos para la fuerza de ventas, sincronización y control comercial de CGrande:
+        li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
 
-- **Módulo de Autenticación y Perfil:** Inicio de sesión individual para cada vendedor/preventista mediante credenciales seguras, con panel principal (Dashboard) de actividad comercial.
-- **Módulo de Gestión de Clientes:** Búsqueda en tiempo real por nombre comercial o RUC, consulta de ficha detallada del cliente, actualización de números telefónicos de contacto y georreferenciación GPS (latitud y longitud).
-- **Módulo de Catálogo y Consulta de Productos:** Exploración ágil del catálogo de artículos, filtrado por descripción o código, con visualización de precios unitarios y existencias de stock disponibles.
-- **Módulo de Pedidos y Presupuestos:** Creación dinámica de pedidos asignando clientes, definición de condición de venta (Contado / Crédito), adición progresiva de ítems, cálculo automático de importes y descuentos, y edición flexible antes del envío.
-- **Módulo de Consulta de Créditos y Facturación:** Seguimiento del historial de transacciones de cada cliente y consulta rápida de facturas a crédito pendientes para control de cobros.
-- **Módulo de Actualización Automática (OTA):** Verificación transparente de nuevas versiones de la aplicación desde el servidor para garantizar la disponibilidad continua de las últimas mejoras del sistema.
-- **Backend API REST y Base de Datos Central:** Arquitectura de servicios web que garantiza la persistencia confiable, la integridad transaccional de los pedidos y la comunicación en tiempo real.
+        .badge-risk {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.8em;
+            text-transform: uppercase;
+        }
 
----
+        .badge-high {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
 
-## 5. Interesados (stakeholders)
+        .badge-medium {
+            background: #fef3c7;
+            color: #b45309;
+        }
 
-| Interesado | Rol / Posición | Interés / Expectativa en el Sistema |
-|---|---|---|
-| **Vendedores y Preventistas** | Usuarios directos del sistema móvil | Facilidad para consultar precios, stock actualizado y generar pedidos rápidos sin necesidad de anotar en papel ni llamar al depósito. |
-| **Encargado de Depósito / Logística** | Receptores de los pedidos | Recibir los pedidos digitalizados y en orden sin retrasos para armar los despachos y planificar las entregas eficientemente. |
-| **Administración y Propietario** | Dirección comercial de CGrande | Control estricto de las ventas a crédito, seguimiento de la recaudación y reducción de pérdidas por pedidos erróneos. |
-| **Clientes Comerciales (Almacenes/Minisupers)** | Beneficiarios indirectos | Recibir las entregas completas en tiempo y forma, con información transparente de sus precios y saldos pendientes. |
-| **Cátedra de Ingeniería de Software I** | Evaluadores académicos | Comprobar la correcta aplicación del ciclo de vida del software, diseño de arquitectura sólida y artefactos UML rigurosos. |
+        .badge-low {
+            background: #dcfce7;
+            color: #15803d;
+        }
 
----
+        .footer {
+            background: #0f172a;
+            padding: 25px 40px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9em;
+        }
 
-## 6. Justificación / viabilidad
+        .footer p {
+            text-align: center;
+            margin-bottom: 6px;
+        }
 
-**Conveniencia del proyecto:** La adopción de la aplicación móvil CGrande transformará un modelo de ventas tradicional dependiente del papel en un ecosistema comercial ágil y digitalizado. Permite optimizar el rendimiento del personal comercial, reducir a cero el extravío de pedidos y evitar la venta indebida a comercios insolventes.
+        .nav-back {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
 
-| Dimensión | Evaluación | Justificación Técnica y Operativa |
-|---|---|---|
-| **Viabilidad Técnica** | **Alta** | El equipo domina el ecosistema oficial de Android moderno con Kotlin y Jetpack Compose, consumiendo servicios web REST mediante librerías robustas y probadas (Retrofit 2 y OkHttp). |
-| **Viabilidad Operativa** | **Alta** | La interfaz está diseñada con patrones móviles intuitivos y componentes táctiles adaptados a pantallas de smartphones convencionales, minimizando la curva de aprendizaje del vendedor. |
-| **Viabilidad Económica** | **Alta** | Se utilizan herramientas de desarrollo de código abierto (Android Studio, Kotlin, Retrofit, MySQL/PostgreSQL), requiriendo únicamente los dispositivos móviles que los vendedores ya utilizan habitualmente. |
+        .nav-back:hover {
+            text-decoration: underline;
+        }
 
----
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
 
-## 7. Visión general de la solución
+            header {
+                padding: 30px 18px;
+            }
 
-La solución articula la labor comercial en terreno con la administración central de CGrande en un flujo operativo continuo:
+            header h1 {
+                font-size: 1.8em;
+            }
 
-1. **Inicio de jornada:** El vendedor inicia sesión en su dispositivo Android; el sistema autentica sus credenciales y muestra el resumen del día en el Dashboard.
-2. **Visita al cliente:** Al llegar al comercio, el vendedor busca al cliente por RUC o Razón Social. Si es un local nuevo o carece de coordenadas, registra la ubicación GPS con un toque en la pantalla.
-3. **Verificación crediticia:** El sistema permite consultar si el cliente posee ventas a crédito pendientes antes de tomar una nueva solicitud.
-4. **Carga del pedido:** El vendedor busca los artículos solicitados en el catálogo digital. El sistema verifica disponibilidad de stock y calcula automáticamente el importe total y subtotales según la condición comercial elegida (Contado / Crédito).
-5. **Confirmación y sincronización:** Al finalizar, el pedido se transmite de forma inmediata al servidor central a través de la API REST, quedando disponible al instante en el depósito para su preparación y facturación formal.
+            .content {
+                padding: 22px 18px;
+            }
 
----
+            table {
+                font-size: 0.85em;
+            }
 
-## 8. Glosario de términos
+            table th, table td {
+                padding: 9px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="tagline">Ingeniería de Software I · UniNorte 2026</div>
+            <h1>📱 CGrande · Gestión de Pedidos</h1>
+            <p>Sistema Móvil de Gestión de Pedidos, Facturación y Control Comercial</p>
+        </header>
 
-| Término | Definición en el Contexto del Proyecto |
-|---|---|
-| **Preventista / Vendedor** | Agente comercial que visita físicamente los comercios para relevar necesidades y registrar pedidos que serán entregados posteriormente. |
-| **Condición de Venta** | Modalidad de pago del pedido: *Contado* (pago al recibir mercadería) o *Crédito* (pago diferido según plazo pactado). |
-| **Presupuesto** | Propuesta comercial o borrador de pedido con cotización de artículos que aún no ha sido confirmado para su despacho en depósito. |
-| **RUC y DV** | Registro Único del Contribuyente y Dígito Verificador, identificador fiscal único del cliente comercial en Paraguay. |
-| **API REST** | Interfaz de Programación de Aplicaciones basada en arquitectura REST que intercambia datos en formato JSON entre la app móvil y el servidor. |
-| **Georreferenciación** | Registro de las coordenadas geográficas (latitud y longitud) del establecimiento del cliente para optimizar la logística de entrega. |
+        <div class="content">
+            <a href="Presentacion.md" class="nav-back">← Volver a Presentación</a>
 
----
+            <!-- INTRODUCCIÓN -->
+            <div class="intro-text">
+                <strong>Entrega 1 · Conceptualización:</strong> Este documento formaliza el entendimiento del problema de negocio, delimita el alcance operativo y establece los objetivos fundamentales para el desarrollo de la aplicación móvil <strong>CGrande</strong>, orientada a optimizar las actividades de preventa, toma de pedidos en calle, sincronización de existencias de productos y control de cuentas de clientes.
+            </div>
 
-## 9. Riesgos iniciales
+            <!-- 1. PRESENTACIÓN -->
+            <h2>1. Presentación del Proyecto</h2>
+            <p><strong>Nombre del sistema:</strong> CGrande — Aplicación Móvil de Gestión de Pedidos y Preventa Comercial</p>
+            <p><strong>Usuario / Cliente real:</strong> Distribuidora Comercial "CGrande", establecimiento comercial dedicado a la distribución y venta de productos de consumo masivo con atención a comercios minoristas y mostrador.</p>
+            
+            <h3>Integrantes del Grupo 7</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Integrante</th>
+                        <th>Rol Asignado</th>
+                        <th>Responsabilidades Principales</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Willian Mijael Prieto Duarte</strong></td>
+                        <td>Líder de Proyecto, Administrador de BD y Backend</td>
+                        <td>Diseño de la base de datos relacional, desarrollo y securización de la API REST, autenticación de usuarios y despliegue del servidor central.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Eliam Leonel Cabrera Paez</strong></td>
+                        <td>Desarrollador Frontend Mobile & UX/UI</td>
+                        <td>Implementación de vistas interactivas con Jetpack Compose en Android, diseño de flujo de navegación, componentes visuales de pedidos, catálogos y cobros.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lucas Esteban Pereira Benitez</strong></td>
+                        <td>Desarrollador de Lógica Móvil & Integración API</td>
+                        <td>Implementación de la capa de acceso a datos con Retrofit/OkHttp, gestión de estados reactivos con Coroutines/Flow, sincronización y geolocalización GPS.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alejandro Ezequiel Flores Perez</strong></td>
+                        <td>Control de Calidad (QA), Pruebas y Documentación</td>
+                        <td>Diseño y ejecución de casos de prueba funcional, validación de sincronización offline/online, verificación de cálculos de facturación y especificaciones técnicas.</td>
+                    </tr>
+                </tbody>
+            </table>
 
-| Riesgo Identificado | Impacto | Estrategia de Mitigación |
-|---|---|---|
-| **Inestabilidad o cortes de conectividad móvil en calle** | **Alto** | Manejo de timeouts adecuados con Retrofit, mensajes claros de error al usuario y preparación de mecanismos de reintento de sincronización. |
-| **Resistencia del personal al cambio de hábitos (papel a app)** | **Medio** | Diseño de interfaces limpias, botones grandes con Compose, búsquedas con autocompletado y jornadas guiadas de capacitación previa. |
-| **Disparidad en versiones de dispositivos Android** | **Medio** | Uso de diseño responsivo y adaptativo en Jetpack Compose, fijando compatibilidad con un SDK mínimo estándar (Android 8.0+ / API 26+). |
-| **Sobrecarga transaccional en horas pico de sincronización** | **Bajo** | Optimización de consultas SQL en el backend, diseño de endpoints livianos con payloads JSON compactos y transacciones atómicas. |
+            <!-- 2. DEFINICIÓN DEL PROBLEMA -->
+            <h2>2. Definición del Problema</h2>
+            <p>
+                En el modelo operativo tradicional de la distribuidora <strong>CGrande</strong>, los preventistas y vendedores de terreno efectúan sus visitas a los comercios clientes empleando talonarios de papel o notas desestructuradas mediante mensajería instantánea (WhatsApp). Los pedidos registrados durante la jornada son comunicados al final de la tarde o transcriptos de manera manual por personal de depósito y administración.
+            </p>
+            <p>
+                Este flujo de trabajo manual e intermediado genera serias deficiencias y cuellos de botella en la operación:
+            </p>
+            <ol>
+                <li><strong>Desfase de stock y pedidos incumplidos:</strong> El vendedor en terreno no tiene visibilidad en tiempo real de las existencias reales en depósito. Esto resulta en la toma de pedidos de artículos ya agotados, provocando demoras, entregas parciales y disconformidad en los clientes.</li>
+                <li><strong>Retrabajo y errores de transcripción:</strong> La carga posterior de pedidos manuscritos en el sistema central suele acarrear confusiones de códigos de producto, cantidades erróneas y precios desactualizados, duplicando el tiempo operativo administrativo.</li>
+                <li><strong>Falta de control crediticio y cuentas corrientes en calle:</strong> Al no contar con información actualizada del estado de cuenta de cada comercio cliente, los preventistas emiten pedidos a clientes con facturas vencidas o que han excedido su límite de crédito autorizado.</li>
+                <li><strong>Ausencia de georreferenciación y desorganización en rutas de reparto:</strong> Dificultad para coordinar las entregas logísticas por no poseer las coordenadas exactas de los comercios clientes, incrementando costos de flete y tiempos de entrega.</li>
+            </ol>
 
----
+            <!-- 3. PROPÓSITO Y OBJETIVOS -->
+            <h2>3. Propósito y Objetivos</h2>
+            <p>
+                <strong>Propósito:</strong> Desarrollar y desplegar una aplicación móvil nativa Android conectada a una API centralizada que transforme la labor de ventas y preventa en un proceso ágil, preciso e informatizado, garantizando la consistencia del inventario y la agilidad en la entrega de mercaderías.
+            </p>
 
-## 10. Selección tecnológica preliminar
+            <div class="objetivo">
+                <strong>Objetivo General:</strong><br>
+                Desarrollar una aplicación móvil integrada a una API REST para la empresa comercial CGrande que sistematice la gestión integral de pedidos, el catálogo de productos con stock en tiempo real, el registro de clientes geolocalizados y el control de facturación en punto de venta.
+            </div>
 
-| Componente | Tecnología Seleccionada | Justificación Técnica |
-|---|---|---|
-| **Plataforma & Lenguaje Móvil** | Android Nativo con **Kotlin** | Lenguaje moderno, tipado y seguro frente a nulos; estándar oficial de Google para alto rendimiento en dispositivos móviles. |
-| **Framework de UI** | **Jetpack Compose** | Toolkit declarativo moderno que reduce el código repetitivo (*boilerplate*), acelera el desarrollo de pantallas reactivas y mejora el mantenimiento. |
-| **Capa de Red & Comunicación** | **Retrofit 2 + OkHttp 3** | Cliente HTTP líder en el ecosistema Android para serialización y deserialización eficiente de payloads JSON y manejo transparente de llamadas asíncronas. |
-| **Concurrencia y Asincronismo** | **Coroutines & StateFlow** | Permite realizar llamadas a la API y procesamiento en segundo plano sin congelar la interfaz de usuario ni provocar bloqueos visuales. |
-| **Backend & Base de Datos** | **API RESTful + Base de Datos Relacional** | Arquitectura de servidor robusta y escalable que asegura transacciones ACID para pedidos, inventario y cuentas de clientes. |
+            <h3>Objetivos Específicos:</h3>
+            <ul>
+                <li><strong>Digitalizar la toma de pedidos y cotizaciones:</strong> Proveer a la fuerza de ventas una interfaz móvil rápida e intuitiva que permita armar pedidos (contado y crédito), calculando subtotales, descuentos y totales de forma automática sin errores de cálculo.</li>
+                <li><strong>Proveer visibilidad de catálogo e inventario en tiempo real:</strong> Permitir la consulta instantánea de productos por código o descripción, mostrando listas de precios y existencias disponibles al momento de la venta.</li>
+                <li><strong>Optimizar la gestión de clientes y cobranzas:</strong> Facilitar la búsqueda ágil de clientes por RUC o Razón Social, visualización de ventas pendientes a crédito y captura de coordenadas GPS para mejorar las rutas de entrega.</li>
+                <li><strong>Centralizar la sincronización de datos con el servidor central:</strong> Comunicar de manera instantánea cada pedido generado con el depósito de la empresa mediante servicios web, reduciendo el tiempo de preparación y despacho de pedidos.</li>
+            </ul>
 
----
+            <!-- 4. ALCANCE DEL PROYECTO -->
+            <h2>4. Alcance del Proyecto</h2>
+            <p>
+                El sistema concentra su capacidad funcional en los módulos críticos para la fuerza de ventas, sincronización y control comercial de CGrande:
+            </p>
+            <div class="box-scope-in">
+                <h3 style="color: #15803d; margin-top: 0;">Módulos y Capacidades del Sistema</h3>
+                <ul>
+                    <li><strong>Módulo de Autenticación y Perfil:</strong> Inicio de sesión individual para cada vendedor/preventista mediante credenciales seguras, con panel principal (Dashboard) de actividad comercial.</li>
+                    <li><strong>Módulo de Gestión de Clientes:</strong> Búsqueda en tiempo real por nombre comercial o RUC, consulta de ficha detallada del cliente, actualización de números telefónicos de contacto y georreferenciación GPS (latitud y longitud).</li>
+                    <li><strong>Módulo de Catálogo y Consulta de Productos:</strong> Exploración ágil del catálogo de artículos, filtrado por descripción o código, con visualización de precios unitarios y existencias de stock disponibles.</li>
+                    <li><strong>Módulo de Pedidos y Presupuestos:</strong> Creación dinámica de pedidos asignando clientes, definición de condición de venta (Contado / Crédito), adición progresiva de ítems, cálculo automático de importes y descuentos, y edición flexible antes del envío.</li>
+                    <li><strong>Módulo de Consulta de Créditos y Facturación:</strong> Seguimiento del historial de transacciones de cada cliente y consulta rápida de facturas a crédito pendientes para control de cobros.</li>
+                    <li><strong>Módulo de Actualización Automática (OTA):</strong> Verificación transparente de nuevas versiones de la aplicación desde el servidor para garantizar la disponibilidad continua de las últimas mejoras del sistema.</li>
+                    <li><strong>Backend API REST y Base de Datos Central:</strong> Arquitectura de servicios web que garantiza la persistencia confiable, la integridad transaccional de los pedidos y la comunicación en tiempo real.</li>
+                </ul>
+            </div>
 
-[← Volver a Presentación](Presentacion.md) · [Siguiente: Análisis →](analisis.md).
+            <!-- 5. INTERESADOS -->
+            <h2>5. Interesados (Stakeholders)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Interesado</th>
+                        <th>Rol / Posición</th>
+                        <th>Interés / Expectativa en el Sistema</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Vendedores y Preventistas</strong></td>
+                        <td>Usuarios directos del sistema móvil</td>
+                        <td>Facilidad para consultar precios, stock actualizado y generar pedidos rápidos sin necesidad de anotar en papel ni llamar al depósito.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Encargado de Depósito / Logística</strong></td>
+                        <td>Receptores de los pedidos</td>
+                        <td>Recibir los pedidos digitalizados y en orden sin retrasos para armar los despachos y planificar las entregas eficientemente.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Administración y Propietario</strong></td>
+                        <td>Dirección comercial de CGrande</td>
+                        <td>Control estricto de las ventas a crédito, seguimiento de la recaudación y reducción de pérdidas por pedidos erróneos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clientes Comerciales (Almacenes/Minisupers)</strong></td>
+                        <td>Beneficiarios indirectos</td>
+                        <td>Recibir las entregas completas en tiempo y forma, con información transparente de sus precios y saldos pendientes.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cátedra de Ingeniería de Software I</strong></td>
+                        <td>Evaluadores académicos</td>
+                        <td>Comprobar la correcta aplicación del ciclo de vida del software, diseño de arquitectura sólida y artefactos UML rigurosos.</td>
+                    </tr>
+                </tbody>
+            </table>
 
+            <!-- 6. JUSTIFICACIÓN Y VIABILIDAD -->
+            <h2>6. Justificación y Viabilidad</h2>
+            <p>
+                <strong>Conveniencia del proyecto:</strong> La adopción de la aplicación móvil CGrande transformará un modelo de ventas tradicional dependiente del papel en un ecosistema comercial ágil y digitalizado. Permite optimizar el rendimiento del personal comercial, reducir a cero el extravío de pedidos y evitar la venta indebida a comercios insolventes.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dimensión</th>
+                        <th>Evaluación</th>
+                        <th>Justificación Técnica y Operativa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Viabilidad Técnica</strong></td>
+                        <td><span class="badge-risk badge-low">Alta</span></td>
+                        <td>El equipo domina el ecosistema oficial de Android moderno con Kotlin y Jetpack Compose, consumiendo servicios web REST mediante librerías robustas y probadas (Retrofit 2 y OkHttp).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Viabilidad Operativa</strong></td>
+                        <td><span class="badge-risk badge-low">Alta</span></td>
+                        <td>La interfaz está diseñada con patrones móviles intuitivos y componentes táctiles adaptados a pantallas de smartphones convencionales, minimizando la curva de aprendizaje del vendedor.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Viabilidad Económica</strong></td>
+                        <td><span class="badge-risk badge-low">Alta</span></td>
+                        <td>Se utilizan herramientas de desarrollo de código abierto (Android Studio, Kotlin, Retrofit, MySQL/PostgreSQL), requiriendo únicamente los dispositivos móviles que los vendedores ya utilizan habitualmente.</td>
+                    </tr>
+                </tbody>
+            </table>
 
+            <!-- 7. VISIÓN GENERAL DE LA SOLUCIÓN -->
+            <h2>7. Visión General de la Solución</h2>
+            <p>
+                La solución articula la labor comercial en terreno con la administración central de CGrande en un flujo operativo continuo:
+            </p>
+            <div class="box-info">
+                <strong>Flujo Operativo Típico del Sistema:</strong>
+                <ol style="margin-top: 10px; margin-bottom: 0;">
+                    <li><strong>Inicio de jornada:</strong> El vendedor inicia sesión en su dispositivo Android; el sistema autentica sus credenciales y muestra el resumen del día en el Dashboard.</li>
+                    <li><strong>Visita al cliente:</strong> Al llegar al comercio, el vendedor busca al cliente por RUC o Razón Social. Si es un local nuevo o carece de coordenadas, registra la ubicación GPS con un toque en la pantalla.</li>
+                    <li><strong>Verificación crediticia:</strong> El sistema permite consultar si el cliente posee ventas a crédito pendientes antes de tomar una nueva solicitud.</li>
+                    <li><strong>Carga del pedido:</strong> El vendedor busca los artículos solicitados en el catálogo digital. El sistema verifica disponibilidad de stock y calcula automáticamente el importe total y subtotales según la condición comercial elegida (Contado / Crédito).</li>
+                    <li><strong>Confirmación y sincronización:</strong> Al finalizar, el pedido se transmite de forma inmediata al servidor central a través de la API REST, quedando disponible al instante en el depósito para su preparación y facturación formal.</li>
+                </ol>
+            </div>
+
+            <!-- 8. GLOSARIO DE TÉRMINOS -->
+            <h2>8. Glosario de Términos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Término</th>
+                        <th>Definición en el Contexto del Proyecto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Preventista / Vendedor</strong></td>
+                        <td>Agente comercial que visita físicamente los comercios para relevar necesidades y registrar pedidos que serán entregados posteriormente.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Condición de Venta</strong></td>
+                        <td>Modalidad de pago del pedido: <em>Contado</em> (pago al recibir mercadería) o <em>Crédito</em> (pago diferido según plazo pactado).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Presupuesto</strong></td>
+                        <td>Propuesta comercial o borrador de pedido con cotización de artículos que aún no ha sido confirmado para su despacho en depósito.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RUC y DV</strong></td>
+                        <td>Registro Único del Contribuyente y Dígito Verificador, identificador fiscal único del cliente comercial en Paraguay.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>API REST</strong></td>
+                        <td>Interfaz de Programación de Aplicaciones basada en arquitectura REST que intercambia datos en formato JSON entre la app móvil y el servidor.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Georreferenciación</strong></td>
+                        <td>Registro de las coordenadas geográficas (latitud y longitud) del establecimiento del cliente para optimizar la logística de entrega.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 9. RIESGOS INICIALES -->
+            <h2>9. Riesgos Iniciales</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Riesgo Identificado</th>
+                        <th>Impacto</th>
+                        <th>Estrategia de Mitigación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Inestabilidad o cortes de conectividad móvil en calle</strong><br><em>Zonas de débil cobertura celular donde el vendedor deba operar.</em></td>
+                        <td><span class="badge-risk badge-high">Alto</span></td>
+                        <td>Manejo de timeouts adecuados con Retrofit, mensajes claros de error al usuario y preparación de mecanismos de reintento de sincronización.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Resistencia del personal al cambio de hábitos (papel a app)</strong><br><em>Vendedores habituados al uso tradicional de cuadernos de notas.</em></td>
+                        <td><span class="badge-risk badge-medium">Medio</span></td>
+                        <td>Diseño de interfaces limpias, botones grandes con Compose, búsquedas con autocompletado y jornadas guiadas de capacitación previa.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Disparidad en versiones de dispositivos Android</strong><br><em>Variedad de tamaños de pantalla y versiones del sistema operativo del personal.</em></td>
+                        <td><span class="badge-risk badge-medium">Medio</span></td>
+                        <td>Uso de diseño responsivo y adaptativo en Jetpack Compose, fijando compatibilidad con un SDK mínimo estándar (Android 8.0+ / API 26+).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sobrecarga transaccional en horas pico de sincronización</strong><br><em>Múltiples preventistas enviando pedidos concurrentemente al cierre de turno.</em></td>
+                        <td><span class="badge-risk badge-low">Bajo</span></td>
+                        <td>Optimización de consultas SQL en el backend, diseño de endpoints livianos con payloads JSON compactos y transacciones atómicas.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 10. SELECCIÓN TECNOLÓGICA -->
+            <h2>10. Selección Tecnológica Preliminar</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Componente</th>
+                        <th>Tecnología Seleccionada</th>
+                        <th>Justificación Técnica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Plataforma & Lenguaje Móvil</strong></td>
+                        <td>Android Nativo con <strong>Kotlin</strong></td>
+                        <td>Lenguaje moderno, tipado y seguro frente a nulos; estándar oficial de Google para alto rendimiento en dispositivos móviles.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Framework de UI</strong></td>
+                        <td><strong>Jetpack Compose</strong></td>
+                        <td>Toolkit declarativo moderno que reduce el código repetitivo (*boilerplate*), acelera el desarrollo de pantallas reactivas y mejora el mantenimiento.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Capa de Red & Comunicación</strong></td>
+                        <td><strong>Retrofit 2 + OkHttp 3</strong></td>
+                        <td>Cliente HTTP líder en el ecosistema Android para serialización y deserialización eficiente de payloads JSON y manejo transparente de llamadas asíncronas.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Concurrencia y Asincronismo</strong></td>
+                        <td><strong>Coroutines & StateFlow</strong></td>
+                        <td>Permite realizar llamadas a la API y procesamiento en segundo plano sin congelar la interfaz de usuario ni provocar bloqueos visuales.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Backend & Base de Datos</strong></td>
+                        <td><strong>API RESTful (PHP / Spring Boot) + MySQL / PostgreSQL</strong></td>
+                        <td>Arquitectura de servidor robusta y escalable que asegura transacciones ACID para pedidos, inventario y cuentas de clientes.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 35px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+                <a href="Presentacion.md" class="nav-back" style="margin-bottom: 0;">← Volver a Presentación</a>
+                <a href="analisis.md" style="color: #2563eb; text-decoration: none; font-weight: 600; font-size: 0.95em;">Siguiente: Análisis (Entrega 2) →</a>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <p><strong>CGrande · Gestión de Pedidos</strong> — Entrega 1: Conceptualización</p>
+            <p>Cátedra de Ingeniería de Software I | Universidad del Norte — Grupo 7</p>
+            <p>© 2026 Willian Prieto, Eliam Cabrera, Lucas Pereira, Alejandro Flores.</p>
+        </div>
+    </div>
+</body>
+</html>
