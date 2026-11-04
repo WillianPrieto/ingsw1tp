@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Requisitos - CGrande · Gestión de Pedidos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.65;
+            color: #2d3748;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
+            padding: 24px 16px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: #ffffff;
+            padding: 45px 30px;
+            text-align: center;
+        }
+
+        header .tagline {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.18);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        header h1 {
+            font-size: 2.3em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.15em;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 40px 45px;
+        }
+
+        .nav-links-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .nav-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            color: #1e3a8a;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 10px;
+            margin-top: 36px;
+            margin-bottom: 20px;
+            font-size: 1.7em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3 {
+            color: #1d4ed8;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            font-size: 1.25em;
+        }
+
+        p {
+            margin-bottom: 16px;
+            text-align: justify;
+            line-height: 1.75;
+        }
+
+        .intro-text {
+            background: #eff6ff;
+            padding: 22px;
+            border-left: 5px solid #2563eb;
+            margin-bottom: 30px;
+            border-radius: 6px;
+            font-size: 1.02em;
+        }
+
+        .cu-card {
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .cu-card h4 {
+            color: #1e3a8a;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .cu-meta {
+            background: #e2e8f0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            color: #334155;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        table th {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: #ffffff;
+            padding: 13px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.92em;
+        }
+
+        table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+            font-size: 0.94em;
+        }
+
+        table tr:hover {
+            background: #f8fafc;
+        }
+
+        table tr:nth-child(even) {
+            background: #f1f5f9;
+        }
+
+        ul, ol {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 7px;
+            line-height: 1.6;
+        }
+
+        .badge-priority {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.78em;
+            text-transform: uppercase;
+        }
+
+        .badge-alta {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .badge-media {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .badge-baja {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .entity-box {
+            background: #f8fafc;
+            border-left: 4px solid #3b82f6;
+            padding: 14px 18px;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 12px;
+        }
+
+        .entity-box strong {
+            color: #1e3a8a;
+        }
+
+        .flow-step {
+            margin-bottom: 6px;
+        }
+
+        .footer {
+            background: #0f172a;
+            padding: 25px 40px;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9em;
+        }
+
+        .footer p {
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 30px 18px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 22px 18px;
+            }
+
+            table {
+                font-size: 0.85em;
+            }
+
+            table th, table td {
+                padding: 9px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="tagline">Ingeniería de Software I · UniNorte 2026</div>
+            <h1>🔍 Entrega 2 · Análisis</h1>
+            <p>Especificación de Requisitos, Modelo de Casos de Uso y Modelo de Dominio de CGrande</p>
+        </header>
+
+        <div class="content">
+            <div class="nav-links-bar">
+                <a href="Presentacion.md" class="nav-link">← Volver a Presentación</a>
+                <a href="conceptualizacion.md" class="nav-link">Ver Conceptualización (Entrega 1) →</a>
+            </div>
+
+            <!-- INTRODUCCIÓN -->
+            <div class="intro-text">
+                <strong>Propósito de la Entrega 2:</strong> Definir qué debe hacer el sistema desde la perspectiva del usuario operativo y de la lógica del negocio de la distribuidora <strong>CGrande</strong>. Se detallan los requisitos funcionales y no funcionales, el catálogo formal de casos de uso con sus especificaciones paso a paso, las entidades del modelo conceptual de dominio y las reglas de negocio rectoras.
+            </div>
+
+            <!-- 1. REQUISITOS FUNCIONALES -->
+            <h2>1. Requisitos Funcionales</h2>
+            <p>
+                Los requisitos funcionales describen los servicios, cálculos y operaciones que la aplicación móvil <strong>CGrande</strong> debe ejecutar de forma obligatoria:
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 12%;">ID</th>
+                        <th style="width: 73%;">Descripción del Requisito</th>
+                        <th style="width: 15%;">Prioridad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>RF-01</strong></td>
+                        <td>El sistema debe autenticar a cada vendedor/preventista mediante usuario y contraseña, retornando una sesión segura para autorizar las operaciones del terminal móvil.</td>
+                        <td><span class="badge-priority badge-alta">Alta</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RF-02</strong></td>
+                        <td>El sistema debe permitir buscar clientes en tiempo real por Razón Social, Nombre de Fantasía o número de RUC/Cédula, mostrando su ficha básica de datos comerciales.</td>
+                        <td><span class="badge-priority badge-alta">Alta</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RF-03</strong></td>
+                        <td>El sistema debe capturar la geolocalización GPS del dispositivo (latitud y longitud) para registrar o actualizar las coordenadas del establecimiento comercial del cliente.</td>
+                        <td><span class="badge-priority badge-media">Media</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RF-04</strong></td>
+                        <td>El sistema debe permitir consultar el catálogo de productos por código o texto, visualizando descripción, lista de precios unitarios y existencias de stock disponibles.</td>
+                        <td><span class="badge-priority badge-alta">Alta</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RF-05</strong></td>
+                        <td>El sistema debe permitir registrar pedidos de venta asociados a un cliente específico, seleccionando la condición comercial (Contado o Crédito).</td>
+                        <td><span class="badge-priority badge-alta">Alta</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RF-06</strong></td>
+                        <td>El sistema debe calcular automáticamente subtotales, descuentos y montos totales al añadir, editar o remover ítems del detalle del pedido.</td>
+                        <td><span class="badge-priority badge-alta">Alta</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RF-07</strong></td>
+                        <td>El sistema debe permitir registrar presupuestos preliminares y luego convertirlos a pedidos confirmados o eliminarlos si el cliente desiste.</td>
+                        <td><span class="badge-priority badge-media">Media</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RF-08</strong></td>
+                        <td>El sistema debe permitir consultar el historial de ventas y las facturas a crédito pendientes de cobro de cada cliente antes de autorizar nuevos pedidos.</td>
+                        <td><span class="badge-priority badge-alta">Alta</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RF-09</strong></td>
+                        <td>El sistema debe permitir actualizar el número celular de contacto de los clientes directamente desde la ficha móvil.</td>
+                        <td><span class="badge-priority badge-baja">Baja</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RF-10</strong></td>
+                        <td>El sistema debe proveer un Dashboard al vendedor con el resumen de pedidos cargados, cantidad de clientes atendidos e importes totales de su jornada.</td>
+                        <td><span class="badge-priority badge-media">Media</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RF-11</strong></td>
+                        <td>El sistema debe comprobar automáticamente si existen versiones actualizadas de la APK en el servidor para su descarga e instalación directa (OTA).</td>
+                        <td><span class="badge-priority badge-media">Media</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 2. REQUISITOS NO FUNCIONALES -->
+            <h2>2. Requisitos No Funcionales</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 14%;">ID</th>
+                        <th style="width: 68%;">Descripción del Requisito</th>
+                        <th style="width: 18%;">Categoría</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>RNF-01</strong></td>
+                        <td>Las búsquedas de catálogo y consultas de clientes deben procesarse en menos de 2 segundos en conexiones móviles 3G/4G normales.</td>
+                        <td><strong>Rendimiento</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RNF-02</strong></td>
+                        <td>Todas las comunicaciones entre la app Android y el servidor backend deben viajar sobre protocolo HTTPS seguro con serialización JSON.</td>
+                        <td><strong>Seguridad</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RNF-03</strong></td>
+                        <td>La interfaz construida con Jetpack Compose debe ser intuitiva, con botones y campos táctiles optimizados para el uso ágil con una mano en calle.</td>
+                        <td><strong>Usabilidad</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RNF-04</strong></td>
+                        <td>El sistema debe controlar errores de conectividad móvil, informando al preventista mediante avisos visuales (Snackbars/Diálogos) y evitando el duplicado de transacciones.</td>
+                        <td><strong>Confiabilidad</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RNF-05</strong></td>
+                        <td>La aplicación debe ser compatible con dispositivos Android con nivel de API 26 (Android 8.0) o superior.</td>
+                        <td><strong>Portabilidad</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 3. MODELO DE CASOS DE USO -->
+            <h2>3. Modelo de Casos de Uso</h2>
+
+            <h3>3.1 Actores del Sistema</h3>
+            <ul>
+                <li><strong>Vendedor / Preventista (Actor Principal):</strong> Usuario operativo de terreno que interactúa directamente con la aplicación móvil en su smartphone Android. Realiza búsquedas de clientes, actualiza ubicaciones GPS, consulta productos, formula pedidos/presupuestos y revisa cuentas corrientes.</li>
+                <li><strong>Encargado de Depósito / Despacho (Actor Secundario):</strong> Usuario interno de la empresa que visualiza a través de la base de datos y sistema central los pedidos confirmados para preparar la mercadería.</li>
+                <li><strong>Administrador del Sistema:</strong> Administra altas de usuarios, configuración de listas de precios y parámetros del servidor.</li>
+                <li><strong>Sistema Central / API (Actor de Soporte):</strong> Procesa transacciones, valida reglas de negocio, persiste la información y sirve datos vía REST.</li>
+            </ul>
+
+            <h3>3.2 Resumen de Casos de Uso</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 12%;">ID</th>
+                        <th style="width: 38%;">Caso de Uso</th>
+                        <th style="width: 32%;">Actor Principal</th>
+                        <th style="width: 18%;">Requisito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>CU-01</strong></td>
+                        <td>Iniciar sesión en la aplicación</td>
+                        <td>Vendedor / Preventista</td>
+                        <td>RF-01</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CU-02</strong></td>
+                        <td>Buscar y consultar cliente</td>
+                        <td>Vendedor / Preventista</td>
+                        <td>RF-02</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CU-03</strong></td>
+                        <td>Registrar geolocalización GPS de cliente</td>
+                        <td>Vendedor / Preventista</td>
+                        <td>RF-03</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CU-04</strong></td>
+                        <td>Consultar productos y disponibilidad de stock</td>
+                        <td>Vendedor / Preventista</td>
+                        <td>RF-04</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CU-05</strong></td>
+                        <td>Registrar pedido de venta</td>
+                        <td>Vendedor / Preventista</td>
+                        <td>RF-05, RF-06</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CU-06</strong></td>
+                        <td>Gestionar presupuesto de cliente</td>
+                        <td>Vendedor / Preventista</td>
+                        <td>RF-07</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CU-07</strong></td>
+                        <td>Consultar cuentas y facturas a crédito</td>
+                        <td>Vendedor / Preventista</td>
+                        <td>RF-08</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CU-08</strong></td>
+                        <td>Visualizar Dashboard de ventas</td>
+                        <td>Vendedor / Preventista</td>
+                        <td>RF-10</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CU-09</strong></td>
+                        <td>Verificar y actualizar versión de la app</td>
+                        <td>Vendedor / Sistema</td>
+                        <td>RF-11</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3.3 Especificación Detallada de Casos de Uso Principales</h3>
+
+            <!-- CU-05 -->
+            <div class="cu-card">
+                <h4>
+                    CU-05 · Registrar Pedido de Venta
+                    <span class="cu-meta">Requisitos: RF-05, RF-06</span>
+                </h4>
+                <p><strong>Actor(es):</strong> Vendedor / Preventista</p>
+                <p><strong>Precondición:</strong> El preventista inició sesión exitosamente y seleccionó un cliente válido de su cartera.</p>
+                <p><strong>Flujo Principal:</strong></p>
+                <ol>
+                    <li class="flow-step">El preventista ingresa a la pantalla de nuevo pedido con el cliente previamente asignado.</li>
+                    <li class="flow-step">Selecciona la condición comercial de la transacción: <em>Contado</em> o <em>Crédito</em>.</li>
+                    <li class="flow-step">Busca un producto por nombre o código en el catálogo digital.</li>
+                    <li class="flow-step">El sistema consulta existencias y precios vigentes según la condición de venta.</li>
+                    <li class="flow-step">El preventista indica la cantidad deseada y confirma la adición del ítem.</li>
+                    <li class="flow-step">El sistema calcula el subtotal de la línea y actualiza el importe total del pedido.</li>
+                    <li class="flow-step">El preventista repite los pasos 3 al 6 para cada artículo solicitado por el comercio.</li>
+                    <li class="flow-step">El preventista revisa el resumen del pedido y presiona <em>"Confirmar y Enviar Pedido"</em>.</li>
+                    <li class="flow-step">La aplicación transmite el pedido completo al servidor central mediante la API REST (`/pedido/registrar` o `/pedido/add`).</li>
+                    <li class="flow-step">El servidor valida la disponibilidad, almacena la transacción en la base de datos y retorna el ID único del pedido confirmado.</li>
+                </ol>
+                <p><strong>Flujos Alternativos:</strong></p>
+                <ul>
+                    <li><em>4a. Stock insuficiente:</em> Si la cantidad solicitada supera las existencias en depósito, el sistema emite una alerta visual mostrando el saldo real disponible para ajustar la cantidad.</li>
+                    <li><em>8a. Modificación de ítems:</em> El preventista puede pulsar sobre cualquier ítem cargado para modificar la cantidad o eliminarlo; el sistema recalcula los totales inmediatamente.</li>
+                    <li><em>9a. Fallo de conexión de red:</em> Si no hay cobertura de datos, la app muestra un mensaje de error de conexión, reteniendo los datos del formulario para evitar la pérdida del pedido y permitir el reenvío.</li>
+                </ul>
+                <p><strong>Postcondición:</strong> El pedido queda registrado en la base de datos central con estado pendiente de preparación en depósito, y el importe se refleja en el Dashboard del vendedor.</p>
+            </div>
+
+            <!-- CU-03 -->
+            <div class="cu-card">
+                <h4>
+                    CU-03 · Registrar Geolocalización GPS de Cliente
+                    <span class="cu-meta">Requisito: RF-03</span>
+                </h4>
+                <p><strong>Actor(es):</strong> Vendedor / Preventista</p>
+                <p><strong>Precondición:</strong> El preventista se encuentra físicamente en el local del cliente con los permisos de ubicación GPS habilitados en el dispositivo Android.</p>
+                <p><strong>Flujo Principal:</strong></p>
+                <ol>
+                    <li class="flow-step">El preventista ingresa a la ficha de información del cliente.</li>
+                    <li class="flow-step">Selecciona la opción <em>"Actualizar Ubicación GPS"</em>.</li>
+                    <li class="flow-step">La aplicación solicita las coordenadas actuales (latitud y longitud) al sensor GPS del dispositivo.</li>
+                    <li class="flow-step">El sistema presenta las coordenadas capturadas y solicita confirmación al usuario.</li>
+                    <li class="flow-step">El preventista confirma la operación.</li>
+                    <li class="flow-step">La app envía los datos al endpoint `/cliente/guardarUbicacion` de la API REST.</li>
+                    <li class="flow-step">El servidor actualiza los campos de georreferenciación en la base de datos y retorna confirmación exitosa.</li>
+                </ol>
+                <p><strong>Flujos Alternativos:</strong></p>
+                <ul>
+                    <li><em>3a. GPS apagado o sin permisos:</em> El sistema notifica al usuario y despliega la solicitud de permisos o el acceso a los ajustes de localización de Android.</li>
+                </ul>
+                <p><strong>Postcondición:</strong> El cliente queda georreferenciado con coordenadas exactas para las futuras rutas de entrega del camión distribuidor.</p>
+            </div>
+
+            <!-- CU-07 -->
+            <div class="cu-card">
+                <h4>
+                    CU-07 · Consultar Cuentas y Facturas a Crédito
+                    <span class="cu-meta">Requisito: RF-08</span>
+                </h4>
+                <p><strong>Actor(es):</strong> Vendedor / Preventista</p>
+                <p><strong>Precondición:</strong> El preventista seleccionó al cliente en pantalla y cuenta con acceso al servicio `/venta/creditos`.</p>
+                <p><strong>Flujo Principal:</strong></p>
+                <ol>
+                    <li class="flow-step">El preventista selecciona la pestaña de <em>"Historial y Créditos"</em> del cliente.</li>
+                    <li class="flow-step">La aplicación ejecuta la consulta asíncrona hacia el servidor.</li>
+                    <li class="flow-step">El sistema despliega el listado de facturas emitidas, especificando fecha, número de comprobante, monto original y saldo pendiente.</li>
+                    <li class="flow-step">El preventista analiza el saldo deudor del comercio antes de formular una nueva solicitud de venta.</li>
+                </ol>
+                <p><strong>Postcondición:</strong> El preventista obtiene visibilidad completa de la solvencia del cliente en el punto de atención.</p>
+            </div>
+
+            <!-- 4. MODELO DE DOMINIO -->
+            <h2>4. Modelo de Dominio</h2>
+            <p>
+                El modelo conceptual de dominio representa los conceptos, responsabilidades y relaciones principales del negocio comercial de <strong>CGrande</strong>:
+            </p>
+
+            <div class="entity-box">
+                <strong>Vendedor (Usuario):</strong> Representa al personal de preventa. Posee identificador, nombre, credenciales de acceso y un registro de las ventas diarias que formula en sus recorridos.
+            </div>
+            <div class="entity-box">
+                <strong>Cliente:</strong> Comercio, almacén o minimercado destinatario de las ventas. Posee RUC con Dígito Verificador (DV), Razón Social, Nombre de Fantasía, dirección, celular de contacto, coordenadas GPS (latitud/longitud) y lista de precios asignada.
+            </div>
+            <div class="entity-box">
+                <strong>Producto:</strong> Mercadería comercializada por la distribuidora. Posee código identificador, descripción, precios diferenciados (contado/crédito) y existencia física de stock en depósito.
+            </div>
+            <div class="entity-box">
+                <strong>Pedido:</strong> Documento comercial emitido por el vendedor en calle. Registra fecha, hora, condición de venta (Contado/Crédito), estado (Pendiente, Confirmado, Facturado), importe total y cliente asociado.
+            </div>
+            <div class="entity-box">
+                <strong>Detalle de Pedido:</strong> Cada línea individual del pedido, especificando el producto solicitado, cantidad de unidades, precio unitario aplicado y subtotal calculado.
+            </div>
+            <div class="entity-box">
+                <strong>Factura / Venta a Crédito:</strong> Registro de las transacciones facturadas al cliente, controlando importes cobrados, saldos vencidos y plazos de crédito otorgados.
+            </div>
+
+            <!-- 5. REGLAS DEL NEGOCIO -->
+            <h2>5. Reglas del Negocio</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 14%;">Código</th>
+                        <th style="width: 86%;">Regla de Negocio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>RN-01</strong></td>
+                        <td><strong>Asociación Obligatoria de Cliente:</strong> Ningún pedido o presupuesto puede formularse sin haber seleccionado previamente un cliente con identificador fiscal válido (RUC/Cédula).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RN-02</strong></td>
+                        <td><strong>Validación de Existencia de Stock:</strong> La aplicación no permite confirmar pedidos cuyas cantidades excedan el inventario disponible en depósito, salvo que se registre explícitamente en modo presupuesto preliminar.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RN-03</strong></td>
+                        <td><strong>Condición Comercial y Precios:</strong> El precio unitario de los productos se determina automáticamente a partir de la condición de pago pactada (Contado o Crédito) y la lista de precios asignada al cliente.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RN-04</strong></td>
+                        <td><strong>Control de Saldos Morosos:</strong> Si un cliente acumula facturas a crédito con vencimiento cumplido, el sistema advierte al vendedor que la operación a crédito requiere autorización administrativa superior.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RN-05</strong></td>
+                        <td><strong>Inmutabilidad de Pedidos Despachados:</strong> Una vez que un pedido cambia de estado a "Confirmado" o "En Despacho" por parte de depósito, no puede ser modificado ni eliminado desde el terminal móvil del vendedor.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 6. MATRIZ DE TRAZABILIDAD -->
+            <h2>6. Matriz de Trazabilidad</h2>
+            <p>
+                Verificación de correspondencia biunívoca entre las necesidades identificadas (Requisitos) y los casos de uso implementados:
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Requisito Funcional</th>
+                        <th style="width: 45%;">Caso(s) de Uso Relacionado(s)</th>
+                        <th style="width: 30%;">Estado de Cobertura</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>RF-01 (Autenticación)</td>
+                        <td>CU-01 (Iniciar sesión)</td>
+                        <td><span class="badge-priority badge-alta">Cubierto</span></td>
+                    </tr>
+                    <tr>
+                        <td>RF-02 (Búsqueda de clientes)</td>
+                        <td>CU-02 (Buscar y consultar cliente)</td>
+                        <td><span class="badge-priority badge-alta">Cubierto</span></td>
+                    </tr>
+                    <tr>
+                        <td>RF-03 (Geolocalización GPS)</td>
+                        <td>CU-03 (Registrar GPS de cliente)</td>
+                        <td><span class="badge-priority badge-alta">Cubierto</span></td>
+                    </tr>
+                    <tr>
+                        <td>RF-04 (Consulta catálogo/stock)</td>
+                        <td>CU-04 (Consultar productos y stock)</td>
+                        <td><span class="badge-priority badge-alta">Cubierto</span></td>
+                    </tr>
+                    <tr>
+                        <td>RF-05, RF-06 (Toma de pedidos)</td>
+                        <td>CU-05 (Registrar pedido de venta)</td>
+                        <td><span class="badge-priority badge-alta">Cubierto</span></td>
+                    </tr>
+                    <tr>
+                        <td>RF-07 (Presupuestos)</td>
+                        <td>CU-06 (Gestionar presupuesto)</td>
+                        <td><span class="badge-priority badge-alta">Cubierto</span></td>
+                    </tr>
+                    <tr>
+                        <td>RF-08 (Cuentas a crédito)</td>
+                        <td>CU-07 (Consultar facturas a crédito)</td>
+                        <td><span class="badge-priority badge-alta">Cubierto</span></td>
+                    </tr>
+                    <tr>
+                        <td>RF-10 (Dashboard preventista)</td>
+                        <td>CU-08 (Visualizar Dashboard)</td>
+                        <td><span class="badge-priority badge-alta">Cubierto</span></td>
+                    </tr>
+                    <tr>
+                        <td>RF-11 (Actualización OTA)</td>
+                        <td>CU-09 (Verificar y actualizar APK)</td>
+                        <td><span class="badge-priority badge-alta">Cubierto</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="footer">
+            <p><strong>CGrande · Gestión de Pedidos</strong> — Entrega 2: Análisis</p>
+            <p>Cátedra de Ingeniería de Software I | Universidad del Norte — Grupo 7</p>
+            <p>© 2026 Willian Prieto, Eliam Cabrera, Lucas Pereira, Alejandro Flores.</p>
+        </div>
+    </div>
+</body>
+</html>
