@@ -1,0 +1,83 @@
+## Tema 1 · Ingeniería de software: una visión previa
+
+*1.* La Ingeniería de Software es la disciplina que aplica un enfoque sistemático, disciplinado y cuantificable al desarrollo, operación y mantenimiento de software, para que sea de calidad, se entregue dentro de plazos y costos razonables y satisfaga las necesidades reales del usuario.
+
+*2.* Programar es escribir código que resuelva un problema puntual. Hacer ingeniería de software es gestionar todo el ciclo: levantar requisitos, diseñar, construir, probar, documentar y mantener, trabajando en equipo y con control de costos y calidad.
+Ejemplo: hacer un script para calcular un promedio es programar. Desarrollar un sistema de gestión para una farmacia, con requisitos de los usuarios, base de datos, pruebas, manual y mantenimiento posterior, es ingeniería de software.
+
+*3.* (1) Los sistemas actuales son grandes y complejos, y requieren procesos que permitan coordinar equipos y controlar esa complejidad. (2) Reduce los fracasos, sobrecostos y retrasos, y mejora la calidad, seguridad y mantenibilidad del software, que hoy es crítico en la banca, la salud, el comercio y otros sectores.
+
+## Tema 2 · El rol de la IS en el diseño de sistemas
+
+*4.* Además del software, un sistema basado en computadora incluye:
+- *Hardware:* computadoras, servidores, dispositivos y periféricos.
+- *Personas:* usuarios y operadores.
+- *Bases de datos / información.*
+- *Documentación:* manuales y especificaciones.
+- *Procedimientos:* pasos y políticas de uso y operación.
+
+*5.* En la visión *aislada, el software se piensa por sí solo, sin considerar su entorno. En la visión **sistémica*, se lo ve como una parte de un sistema mayor que incluye hardware, personas, procesos y otras organizaciones, y se diseña considerando las interacciones, restricciones e impactos entre todos esos componentes. La visión sistémica evita soluciones que funcionan técnicamente pero no encajan en la realidad de uso.
+
+*6. Herramienta: GitHub Copilot (asistente de código).*
+- *Tarea que apoya:* la codificación. Sugiere y autocompleta código, genera funciones, tests y documentación a partir de comentarios o contexto, y transforma el rol del ingeniero hacia revisar y orientar más que escribir cada línea.
+- *Beneficio concreto:* reduce el tiempo en tareas repetitivas (código base, pruebas unitarias), lo que aumenta la productividad.
+- *Riesgo o desafío:* puede generar código con errores o vulnerabilidades que parece correcto, y puede inducir una dependencia excesiva. Por eso el código debe revisarse y probarse siempre.
+
+## Tema 3 · Historia de la ingeniería de software
+
+*7.* Porque fue la primera vez que la industria reconoció formalmente que construir software grande con métodos artesanales fallaba: había proyectos tardíos, sobrecostos, errores y software que no cumplía lo pedido. En la conferencia de la OTAN se acuñó el término "ingeniería de software" y se propuso aplicar principios de ingeniería al desarrollo. Así nació la disciplina, con procesos, métodos y estándares de calidad.
+
+*Ejercicio de relación:*
+
+| Evento / Período | Descripción |
+|---|---|
+| A. Programación artesanal | *3* |
+| B. Crisis del software | *1* |
+| C. Modelo en cascada | *5* |
+| D. Métodos iterativos | *4* |
+| E. Metodologías ágiles | *2* |
+
+## Tema 4 · El rol del ingeniero de software
+
+*8.* Comunicación efectiva, trabajo en equipo y capacidad de resolver problemas. También son valiosos el pensamiento crítico, la gestión del tiempo, la ética profesional y la capacidad de aprender continuamente.
+
+*9.*
+
+| Rol | Descripción |
+|---|---|
+| Analista | Levanta y documenta los requisitos con usuarios y clientes, y traduce las necesidades del negocio en especificaciones claras. |
+| Arquitecto | Define la estructura general del sistema (componentes, tecnologías, patrones) para cumplir requisitos funcionales y de calidad como rendimiento y seguridad. |
+| Desarrollador | Implementa el sistema escribiendo, integrando y depurando el código según el diseño. |
+| Tester / QA | Diseña y ejecuta pruebas para detectar defectos y verificar que el software cumpla los requisitos y estándares de calidad. |
+
+*10.* Debería informar de inmediato la falla a su superior o al equipo responsable, documentarla y proponer corregirla antes de la entrega, aunque eso implique retrasar el proyecto una semana. 
+La ética profesional (por ejemplo, el código de ética ACM/IEEE) establece que el ingeniero debe velar por el interés público y la seguridad de los usuarios por encima de los plazos o beneficios económicos. Exponer datos de usuarios puede causar daños graves, pérdida de confianza y consecuencias legales. Si la gerencia decide ignorar el riesgo, debe dejar constancia por escrito y escalar el tema por los canales correspondientes.
+
+## Tema 5 · El ciclo del software
+
+*11.*
+1. Análisis y especificación de requisitos
+2. Diseño
+3. Implementación (codificación)
+4. Pruebas (verificación y validación)
+5. Despliegue y mantenimiento
+
+*12.* Porque es la fase más larga: el software sigue en uso años después de entregado y debe corregirse (errores), adaptarse (nuevos entornos, leyes), mejorarse (nuevas funciones) y prevenirse (refactorización). Además, modificar un sistema ya en producción exige entender código ajeno, probar que no se rompa nada y a veces trabajar con documentación pobre.
+Ejemplo hipotético: un sistema de facturación se desarrolla en 8 meses, pero se usa 10 años. En ese tiempo el gobierno cambia la normativa de facturación electrónica, el banco cambia su API de pagos y los usuarios piden reportes nuevos. Todo eso requiere modificar, probar y volver a desplegar, y en conjunto cuesta mucho más que el desarrollo inicial.
+
+## Tema 6 · Relación con otras áreas de la computación
+
+| Área | ¿Cómo apoya a la Ingeniería de Software? |
+|---|---|
+| Estructuras de datos y algoritmos | Permiten elegir soluciones eficientes para organizar y procesar la información, con impacto directo en el rendimiento y la escalabilidad del sistema. |
+| Bases de datos | Aportan el modelado, almacenamiento, consulta y seguridad de los datos que casi todo sistema necesita para persistir información. |
+| Sistemas operativos | Proveen la gestión de procesos, memoria, archivos y recursos sobre la que se ejecuta el software, y condicionan decisiones de diseño y despliegue. |
+| Redes | Permiten diseñar sistemas distribuidos, web y en la nube, con comunicación entre componentes, protocolos y consideraciones de seguridad y disponibilidad. |
+
+## Tema 7 · Relación con otras disciplinas
+
+*13. Administración y Psicología.*
+- *Administración:* el ingeniero la usa para planificar proyectos, estimar tiempos y costos, asignar recursos y gestionar riesgos. Ejemplo: armar un cronograma y un presupuesto para un sistema, y controlar si el avance real se ajusta a lo planificado.
+- *Psicología:* ayuda a entender a los usuarios y a mejorar la dinámica del equipo. Ejemplo: en una entrevista de relevamiento, saber escuchar y detectar lo que el cliente realmente necesita (aunque no lo exprese bien), o diseñar una interfaz que no genere frustración. También sirve para manejar conflictos en el equipo.
+
+*14. Reflexión final.* La idea que me resultó más relevante es que la ingeniería de software *no se trata solo de programar*, sino de resolver problemas reales con procesos, trabajo en equipo y responsabilidad ética. La historia muestra que los fracasos de los proyectos vinieron más de la mala gestión, la comunicación y los requisitos mal entendidos que de la tecnología. Con la IA, que automatiza cada vez más la escritura de código, esto cobra más peso: lo que diferencia al ingeniero es su criterio para analizar, diseñar, validar y decidir con ética, y no solo la sintaxis
