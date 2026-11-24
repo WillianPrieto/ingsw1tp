@@ -1,0 +1,108 @@
+# Respuestas — Ejercitario Unidad 03
+
+## Tema 1 · El significado de proceso
+
+**1. Define en tus propias palabras qué es un proceso de software.**
+
+_Respuesta:_ Un proceso de software es el conjunto estructurado de actividades, acciones y tareas que se realizan para construir un producto de software de calidad, desde que se identifica la necesidad hasta que el sistema se entrega y se mantiene. Define qué se hace, en qué orden y quién lo hace, de modo que el desarrollo sea organizado y repetible y no improvisado.
+
+**2. Explica la diferencia entre proceso, metodología y modelo de proceso, con un ejemplo de cada uno.**
+
+_Respuesta:_ El **proceso** es el conjunto general de actividades necesarias para desarrollar software. Ejemplo: el proceso de desarrollo de una empresa, que incluye comunicación, planificación, modelado, construcción y despliegue. La **metodología** es un conjunto de métodos, técnicas, roles y prácticas que indica cómo llevar a cabo el proceso. Ejemplo: Scrum o Extreme Programming (XP). El **modelo de proceso** es una representación abstracta que describe la organización y el flujo de las actividades del proceso. Ejemplo: el modelo en cascada o el modelo en espiral.
+
+**3. Enumera las cinco actividades genéricas del marco de trabajo de Pressman.**
+
+_Respuesta:_ 1) Comunicación, 2) Planeación, 3) Modelado, 4) Construcción y 5) Despliegue.
+
+**4. Menciona dos actividades "de la sombrilla" y explica por qué se dice que "cubren" todo el proceso.**
+
+_Respuesta:_ Dos actividades de la sombrilla son el aseguramiento de la calidad del software y la administración de la configuración (control de cambios). También lo son el seguimiento y control del proyecto, la administración de riesgos y las revisiones técnicas. Se dice que "cubren" todo el proceso porque no pertenecen a una sola etapa: se aplican de manera continua durante todo el proyecto, en paralelo a las actividades genéricas, para gestionar, controlar y asegurar la calidad del trabajo.
+
+---
+
+## Tema 2 · Modelos de proceso
+
+**5. Completen el siguiente cuadro indicando en qué situación conviene usar cada modelo de proceso visto en clase.**
+
+| Modelo | ¿Cuándo conviene usarlo? |
+|---|---|
+| Cascada | Cuando los requisitos están bien definidos, son estables y es poco probable que cambien, y el proyecto es pequeño o de bajo riesgo. |
+| Incremental | Cuando se necesita entregar rápido una versión operativa con las funciones principales, y luego ir agregando funcionalidad, o cuando hay pocos recursos para entregar todo de una vez. |
+| Evolutivo (prototipos) | Cuando los requisitos son poco claros o el cliente no sabe bien qué quiere, y conviene construir una versión rápida para validarlos. |
+| Evolutivo (espiral) | En proyectos grandes, complejos y de alto riesgo, donde se necesita analizar los riesgos de forma explícita en cada iteración. |
+| Concurrente | Cuando varias actividades o equipos trabajan en paralelo y en distintos estados, como en sistemas grandes, cliente-servidor o con múltiples componentes. |
+
+**6. Ejercicio de relación**
+
+| Modelo de proceso | Característica principal |
+|---|---|
+| A. Cascada | **2** |
+| B. Incremental | **4** |
+| C. Prototipos | **5** |
+| D. Espiral | **1** |
+| E. Concurrente | **3** |
+
+**7. Elegí un proyecto de software y justificá qué modelo de proceso usarías para desarrollarlo y por qué.**
+
+_Respuesta:_ Proyecto: un sistema de gestión para un taller mecánico (clientes, vehículos, órdenes de trabajo y facturación). Usaría el modelo **incremental**. Primero entregaría el módulo más crítico (registro de clientes y órdenes de trabajo) para que el taller empiece a usarlo, y luego agregaría inventario de repuestos, facturación y reportes. Así el cliente obtiene valor temprano, puede dar retroalimentación en cada entrega y los cambios de requisitos se incorporan sin rehacer todo el sistema.
+
+---
+
+## Tema 3 · Iteración de procesos
+
+**8. Explica con tus palabras por qué la mayoría de los procesos modernos son iterativos.**
+
+_Respuesta:_ Porque los requisitos casi siempre cambian o no se entienden del todo al comienzo, y es muy difícil acertar a la primera. Con las iteraciones se construye el sistema por ciclos repetidos, se obtiene retroalimentación del cliente en cada ciclo, se detectan errores y riesgos más temprano y se ajusta el rumbo antes de que corregir sea costoso. Esto permite adaptarse al cambio y entregar valor de forma continua.
+
+**9. Menciona una ventaja y una desventaja de trabajar con iteraciones cortas.**
+
+_Respuesta:_ **Ventaja:** se obtiene retroalimentación rápida del cliente y se detectan los problemas pronto, lo que reduce el riesgo y facilita adaptarse a los cambios. **Desventaja:** puede haber sobrecarga de planificación y coordinación, y si no se cuida el diseño general, el sistema puede degradarse o requerir mucho retrabajo (refactorización) con el tiempo.
+
+---
+
+## Tema 4 · Especificación, diseño, implementación, validación y evolución
+
+**10. Describan brevemente qué implica cada una de las cuatro actividades fundamentales del proceso de software, según Sommerville.**
+
+| Actividad | Qué implica |
+|---|---|
+| Especificación | Definir qué debe hacer el sistema: se obtienen y analizan los requisitos funcionales y no funcionales junto con los usuarios y se documentan, incluyendo restricciones. |
+| Diseño e implementación | Convertir la especificación en un sistema ejecutable: se diseña la arquitectura, los datos y las interfaces, y luego se programa, integra y depura el software. |
+| Validación | Verificar que el sistema cumple la especificación y satisface las necesidades del cliente, mediante pruebas, revisiones e inspecciones. |
+| Evolución | Modificar el sistema después de su entrega para corregir errores, adaptarlo a nuevos entornos o agregar funciones, ya que los requisitos cambian con el tiempo. |
+
+**11. Relaciona estas cuatro actividades con las cinco fases del ciclo del software de la Unidad 1. ¿En qué se parecen y en qué se diferencian?**
+
+_Respuesta:_ Se corresponden en gran medida: la **especificación** equivale al análisis de requisitos; el **diseño e implementación** agrupa las fases de diseño e implementación; la **validación** corresponde a las pruebas; y la **evolución** equivale al mantenimiento. Se parecen en que describen las mismas tareas esenciales para construir y sostener un software. Se diferencian en que las cuatro actividades de Sommerville son actividades que pueden realizarse de forma intercalada, repetida y en paralelo (por ejemplo, en procesos iterativos o ágiles), mientras que las cinco fases del ciclo de vida suelen presentarse como etapas más secuenciales. Además, Sommerville agrupa diseño e implementación en una sola actividad.
+
+---
+
+## Tema 5 · Herramientas y técnicas para modelado de procesos
+
+**12. Menciona dos formas de representar un proceso (no un sistema) y explica brevemente cada una.**
+
+_Respuesta:_ 1) **Diagrama de flujo de actividades (por ejemplo, diagrama de actividades UML o BPMN):** muestra gráficamente las actividades del proceso, su secuencia, las decisiones y quién las realiza. 2) **Descripción textual o por roles (por ejemplo, una descripción de proceso con entradas, salidas y responsables):** detalla en texto o en tablas cada actividad, qué recibe, qué produce y qué rol la ejecuta. También puede representarse con modelos como el espiral o la cascada, que describen el flujo general del proceso.
+
+**13. ¿Qué es un patrón de proceso? Da un ejemplo hipotético de un problema recurrente en un proyecto y su solución.**
+
+_Respuesta:_ Un patrón de proceso describe una solución probada a un problema recurrente que aparece durante el proceso de software, indicando el contexto en que ocurre y cómo resolverlo. Sirve para reutilizar buenas prácticas. Ejemplo hipotético: **problema:** los requisitos del cliente cambian con frecuencia durante el proyecto y generan retrasos. **Solución (patrón):** realizar prototipos rápidos y reuniones de revisión con el cliente al final de cada iteración, para validar los requisitos de manera temprana y controlar los cambios.
+
+---
+
+## Tema 6 · Ayuda automatizada al proceso
+
+**14. Explica la diferencia entre herramientas Upper-CASE y Lower-CASE.**
+
+_Respuesta:_ Las herramientas **Upper-CASE** apoyan las primeras etapas del desarrollo: análisis de requisitos, especificación y diseño (por ejemplo, herramientas para modelar diagramas y requisitos). Las herramientas **Lower-CASE** apoyan las etapas finales: implementación, pruebas, depuración y mantenimiento (por ejemplo, generadores de código, compiladores, depuradores y herramientas de testing). Las que cubren todo el ciclo de vida de manera integrada se denominan I-CASE.
+
+**15. Menciona tres herramientas que consideren CASE y clasifíquenlas.**
+
+| Herramienta | Categoría (Upper / Lower / I-CASE) |
+|---|---|
+| Enterprise Architect (o StarUML) | Upper-CASE |
+| Visual Studio Code con depurador y pruebas (o Eclipse / IntelliJ IDEA) | Lower-CASE |
+| IBM Rational Rose / Rational Software Suite | I-CASE |
+
+**16. Reflexión final:** de los modelos de proceso vistos en esta unidad, ¿cuál elegirían para un proyecto personal? Justifiquen su elección.
+
+_Respuesta:_ Elegiría el modelo **incremental**. Para un proyecto personal pequeño o mediano, con tiempo limitado y requisitos que no están del todo definidos al comienzo, conviene ir construyendo por partes: se entrega primero una versión mínima funcional y luego se agregan funciones. Esto permite ver avances rápido y mantener la motivación, y ajustar los requisitos a medida que se aprende. El modelo en cascada sería demasiado rígido porque los requisitos pueden cambiar, y el espiral o el concurrente serían excesivos para un proyecto de este tamaño, con un solo desarrollador y poco riesgo.
